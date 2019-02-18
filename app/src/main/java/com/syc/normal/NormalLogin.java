@@ -2,8 +2,10 @@ package com.syc.normal;
 
 import android.os.Bundle;
 
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,11 +13,15 @@ import android.widget.Toast;
 
 import com.syc.blogmvc.R;
 
+import okhttp3.OkHttpClient;
+
 /**
  * Created by suyichen on 2019/2/18.
  */
 
 public class NormalLogin extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String TAG = "NormalLogin";
 
     private EditText usernameEdit;
     private EditText passwordEdit;
@@ -56,6 +62,7 @@ public class NormalLogin extends AppCompatActivity implements View.OnClickListen
         if(!isEditOK){
             return;
         }
+
 
     }
 
