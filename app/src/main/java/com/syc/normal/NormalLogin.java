@@ -13,7 +13,14 @@ import android.widget.Toast;
 
 import com.syc.blogmvc.R;
 
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by suyichen on 2019/2/18.
@@ -22,10 +29,12 @@ import okhttp3.OkHttpClient;
 public class NormalLogin extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "NormalLogin";
+    private static final String URL = "https://www.apiopen.top/login?key=00d91e8e0cca2b76f515926a36db68f5&phone=13594347817&passwd=123456";
 
     private EditText usernameEdit;
     private EditText passwordEdit;
     private Button login;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +72,35 @@ public class NormalLogin extends AppCompatActivity implements View.OnClickListen
             return;
         }
 
+        startLogin();
 
+    }
+
+    private void startLogin() {
+        OkHttpClient client = new OkHttpClient();
+        FormBody paramsBody = new FormBody.Builder()
+                .add("key","00d91e8e0cca2b76f515926a36db68f5")
+                .add("phone","13594347817")
+                .add("passwd","123456")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(URL)
+                .header("Content-Type","text/html; charset=utf-8;")
+                .post(paramsBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG,"client is failure");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e(TAG,"client is response,and message: + " + response.message());
+            }
+        });
     }
 
 
