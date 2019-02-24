@@ -10,13 +10,13 @@
         android:id="@+id/edit_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="username" />
+        android:text="13594347817" />
 
     <EditText
         android:id="@+id/edit_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="password" />
+        android:text="123456" />
 
     <Button
         android:id="@+id/login"
